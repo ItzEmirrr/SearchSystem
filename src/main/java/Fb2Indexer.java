@@ -3,6 +3,9 @@ import co.elastic.clients.elasticsearch._types.ElasticsearchException;
 import co.elastic.clients.elasticsearch.core.IndexRequest;
 import co.elastic.clients.elasticsearch.core.IndexResponse;
 
+import co.elastic.clients.elasticsearch.indices.GetIndexResponse;
+import co.elastic.clients.elasticsearch._types.ErrorResponse;
+
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import java.io.File;
@@ -29,11 +32,17 @@ public class Fb2Indexer {
             if (isRussian(file)) {
                 System.out.println("Индексируем файл: " + file.getAbsolutePath());
                 String title = extractTitle(file);
-                List<String> sentences = extractSentences(file);
+                if (!title.contains("�")) {
+                    List<String> sentences = extractSentences(file);
 
-                for (String sentence : sentences) {
-                    indexSentence(title, file.getAbsolutePath(), sentence);
+                    for (String sentence : sentences) {
+                        indexSentence(title, file.getAbsolutePath(), sentence);
+                    }
+                } else {
+                    System.out.println("Пропускаем файл (не расшифрован): " + file.getAbsolutePath());
                 }
+
+
             } else {
                 System.out.println("Пропускаем файл (не русский): " + file.getAbsolutePath());
             }
@@ -128,7 +137,7 @@ public class Fb2Indexer {
             IndexResponse response = client.index(request);
 
             // Можешь убрать для ускорения
-            System.out.println("Индексировано, id=" + response.id());
+//            System.out.println("Индексировано, id=" + response.id());
 
         } catch (ElasticsearchException | java.io.IOException e) {
             e.printStackTrace();

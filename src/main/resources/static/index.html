@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Поисковая система</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="/script.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body class="page-background">
+
+<header class="header-gradient">
+    <div class="container">
+        <div class="header-content">
+            <div class="logo-container">
+                <i class="fas fa-search-location logo-icon"></i> <h1 class="logo-title">Поиск по книгам</h1>
+            </div>
+            <nav class="navigation-menu hidden md:flex">
+                <a href="#" class="nav-link">Главная</a>
+            </nav>
+            <button class="md:hidden menu-toggle-button">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+
+        <div class="search-section-container">
+            <h2 class="search-title">Найдите нужную информацию</h2>
+            <p class="search-subtitle">Поиск по содержимому оцифрованных книг</p>
+
+            <div class="search-box-wrapper">
+                <div class="search-box-main">
+                    <input
+                            type="text"
+                            id="searchPhrase"
+                            placeholder="Введите фразу для поиска..."
+                            class="search-input-field"
+                    >
+                    <button id="searchButton" class="search-button-action">
+                        <i class="fas fa-search"></i>
+                    </button>
+                </div>
+
+                <div class="search-options">
+                    <label for="searchOperator" class="operator-label">Логика поиска:</label>
+                    <select id="searchOperator" class="operator-select">
+                        <option value="OR" selected>ИЛИ (хотя бы одно слово)</option>
+                        <option value="AND">И (все слова в предложении)</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<main class="container main-content-area">
+    <div id="loadingIndicator" class="loading-indicator-style" style="display: none;">
+        <p>Идет поиск...</p> </div>
+
+    <section id="searchResultsSection"> <div class="results-header">
+        <h2 class="results-title-text">Результаты поиска</h2>
+        <div id="resultCount" class="results-count-text">Найдено: 0</div>
+    </div>
+
+        <div class="results-grid" id="searchResults">
+        </div>
+
+        <div class="pagination-controls-container" id="paginationControls" style="display: none;">
+            <button id="prevPageButton" disabled>Предыдущая</button>
+            <span id="currentPage">Страница: 1</span>
+            <button id="nextPageButton">Следующая</button>
+        </div>
+    </section>
+</main>
+
+<footer class="page-footer">
+    <div class="container">
+        <div class="footer-grid">
+            <div>
+                <h3 class="footer-title">Поиск по книгам</h3>
+                <p class="footer-text">Система для поиска информации в текстовых файлах.</p>
+            </div>
+            <div>
+                <h4 class="footer-subtitle">Навигация</h4>
+                <ul class="footer-links-list">
+                    <li><a href="#" class="footer-link">Главная</a></li>
+                    <li><a href="#searchResultsSection" class="footer-link">Результаты поиска</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="footer-subtitle">Помощь</h4>
+                <ul class="footer-links-list">
+                    <li><a href="#" class="footer-link">О системе</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-copyright">
+            <p>&copy; 2023-2025 Ваша Поисковая Система. Все права защищены.</p>
+        </div>
+    </div>
+</footer>
+
+</body>
+</html>

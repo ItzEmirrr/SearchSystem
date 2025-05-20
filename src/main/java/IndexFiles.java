@@ -21,6 +21,7 @@ public class IndexFiles {
         Fb2Indexer indexer = new Fb2Indexer(client);
 
         // Путь
-        indexer.indexDirectory(Paths.get(""));
+        indexer.indexDirectory(Paths.get("D:\\Users\\Admin\\Documents\\Search\\files2"));
+//        indexer.deleteIndex();
     }
 }
